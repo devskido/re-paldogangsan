@@ -70,8 +70,6 @@ function SearchContent() {
           results={results}
           query={query}
           isSearching={isSearching}
-          resultCount={resultCount}
-          totalCount={products.length}
         />
       </div>
     </div>
