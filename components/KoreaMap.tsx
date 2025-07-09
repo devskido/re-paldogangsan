@@ -42,33 +42,29 @@ export default function KoreaMap({ onRegionClick, productCounts = {}, selectedRe
     'jeju': 'jeju'
   };
 
-  const handleRegionClick = (regionId: string) => {
-    const mappedRegion = regionMapping[regionId] || regionId;
-    if (onRegionClick) {
-      onRegionClick(mappedRegion);
-    }
-  };
+  // Prepare data for the map component
+  const mapData = Object.entries(regionMapping).map(([mapId, ourId]) => ({
+    id: mapId,
+    value: productCounts[ourId] || 0,
+    label: REGION_NAMES[ourId as keyof typeof REGION_NAMES] || ourId
+  }));
 
-  const getRegionColor = (regionId: string) => {
-    const mappedRegion = regionMapping[regionId] || regionId;
-    
-    // Selected region
-    if (selectedRegion === mappedRegion) {
-      return '#1E40AF'; // blue-800
-    }
-    
-    // Hovered region
-    if (hoveredRegion === regionId) {
-      return '#3B82F6'; // blue-500
-    }
-    
-    // Color based on product count
-    const count = productCounts[mappedRegion] || 0;
+  // Color function based on count
+  const setColorByCount = (count: number) => {
     if (count > 1000) return '#1E40AF'; // blue-800
     if (count > 500) return '#2563EB'; // blue-600
     if (count > 100) return '#3B82F6'; // blue-500
     if (count > 0) return '#60A5FA'; // blue-400
     return '#F3F4F6'; // gray-100
+  };
+
+  const handleMapClick = (e: any) => {
+    if (e && e.id) {
+      const mappedRegion = regionMapping[e.id] || e.id;
+      if (onRegionClick) {
+        onRegionClick(mappedRegion);
+      }
+    }
   };
 
   return (
@@ -80,18 +76,14 @@ export default function KoreaMap({ onRegionClick, productCounts = {}, selectedRe
           {/* Map */}
           <div className="lg:col-span-2">
             <div className="bg-gray-50 rounded-lg p-4">
-              <SouthKoreaMapChart
-                onClick={handleRegionClick}
-                onMouseEnter={(regionId: string) => setHoveredRegion(regionId)}
-                onMouseLeave={() => setHoveredRegion(null)}
-                customStyle={(regionId: string) => ({
-                  fill: getRegionColor(regionId),
-                  stroke: '#E5E7EB',
-                  strokeWidth: 1,
-                  cursor: 'pointer',
-                  transition: 'fill 0.2s ease'
-                })}
-              />
+              <div onClick={handleMapClick} style={{ cursor: 'pointer' }}>
+                <SouthKoreaMapChart
+                  data={mapData}
+                  unit="개"
+                  setColorByCount={setColorByCount}
+                  darkMode={false}
+                />
+              </div>
             </div>
           </div>
           
