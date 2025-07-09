@@ -24,7 +24,7 @@
       ]
     },
     {
-      "source": "/(.*)\.json",
+      "source": "/(.*)\\.json",
       "headers": [
         {
           "key": "Cache-Control",
