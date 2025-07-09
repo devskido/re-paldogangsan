@@ -1,0 +1,73 @@
+5. Future Enhancement: Database Integration
+5.1 Phase 2: Database Migration (3-6 months later)
+5.1.1 Why Database?
+Real-time search: More powerful search capabilities
+Dynamic filtering: Support for complex queries
+Scalability: Handle hundreds of thousands of products
+User features: Login, favorites, etc.
+5.1.2 Database Architecture
+┌─────────────────┐     ┌──────────────────┐     ┌─────────────────┐
+│  Local Machine  │────▶│ Supabase DB      │────▶│  Vercel         │
+│                 │     │                  │     │                 │
+│ - Scrapers      │     │ - PostgreSQL     │     │ - Dynamic APIs  │
+│ - Direct Upload │     │ - Full-text      │     │ - Server-side   │
+│                 │     │   search         │     │   rendering     │
+└─────────────────┘     └──────────────────┘     └─────────────────┘
+5.1.3 Database Schema
+sql
+-- Schema for future implementation
+CREATE TABLE products (
+  id UUID PRIMARY KEY,
+  mall_engname VARCHAR(100),
+  name VARCHAR(200),
+  price INTEGER,
+  search_vector tsvector,
+  -- ... additional fields
+);
+
+CREATE TABLE users (
+  id UUID PRIMARY KEY,
+  email VARCHAR(255) UNIQUE,
+  -- ... user-related fields
+);
+
+CREATE TABLE user_favorites (
+  user_id UUID,
+  product_id UUID,
+  -- ... favorites functionality
+);
+5.1.4 Migration Plan
+Database setup (Supabase free tier)
+API endpoints implementation (dynamic search, filtering)
+Gradual migration (JSON and DB in parallel)
+User features addition (login, favorites)
+Complete transition (remove JSON files)
+5.2 Additional Future Features
+5.2.1 User Authentication (6 months later)
+Email/password registration
+OAuth (Google, Kakao)
+User profiles and favorites
+5.2.2 Advanced Search (6 months later)
+PostgreSQL full-text search
+Korean language optimization
+Fuzzy matching
+Search suggestions
+5.2.3 Analytics & Monitoring (1 year later)
+Product view tracking
+Search analytics
+User behavior analysis
+6. Implementation Timeline
+Phase 1: MVP with JSON (Week 1-4)
+Week 1-2: Scraper generation with Claude Code
+Week 3: JSON structure and search index
+Week 4: Static site deployment
+Phase 2: Database Integration (Month 3-6)
+Database setup and schema
+API development
+Data migration
+Dynamic features
+Phase 3: User Features (Month 6-12)
+Authentication system
+User profiles
+Advanced search
+Analytics

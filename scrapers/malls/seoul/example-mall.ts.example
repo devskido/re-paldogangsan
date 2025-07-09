@@ -1,0 +1,32 @@
+import { HttpScraper } from '../../base/HttpScraper';
+import { ScraperConfig } from '../../base/interfaces';
+
+/**
+ * Example scraper for a Seoul mall
+ * Rename this file to {mall-id}.ts and implement the scraping logic
+ */
+const config: ScraperConfig = {
+  id: 'seoul-example',
+  name: '서울시 예제 쇼핑몰',
+  url: 'https://example-mall.seoul.kr',
+  region: 'seoul',
+  selectors: {
+    productList: '.product-list .product-item',
+    productName: '.product-name',
+    productPrice: '.product-price',
+    productImage: '.product-image img',
+    productLink: 'a.product-link',
+    pagination: '.pagination a.next',
+    categories: '.product-category'
+  },
+  options: {
+    maxPages: 10,
+    delay: 1000, // 1 second between requests
+    timeout: 30000, // 30 seconds
+    userAgent: 'K-Mall-Aggregator/1.0'
+  }
+};
+
+const scraper = new HttpScraper(config);
+
+export default scraper;

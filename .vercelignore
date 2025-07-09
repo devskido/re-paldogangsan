@@ -1,0 +1,39 @@
+# Development files
+.env.local
+.env.development
+
+# Source files not needed for static site
+/scrapers
+/src/**/*.test.ts
+/src/**/*.test.tsx
+
+# Documentation
+*.md
+!README.md
+
+# Git
+.git
+.gitignore
+
+# Dependencies
+node_modules
+
+# IDE
+.vscode
+.idea
+.cursor
+
+# Task Master
+.taskmaster
+
+# MCP
+.mcp.json
+
+# TypeScript
+*.tsbuildinfo
+
+# Next.js development
+.next
+
+# Mac
+.DS_Store

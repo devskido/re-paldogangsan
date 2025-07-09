@@ -1,0 +1,29 @@
+{
+  "version": "1.0",
+  "created_at": "2025-01-08T12:00:00Z",
+  "index": {
+    "감귤": ["seoul-mall-001"],
+    "제주": ["seoul-mall-001"],
+    "tangerines": ["seoul-mall-001"],
+    "어묵": ["busan-mall-045"],
+    "부산": ["busan-mall-045"],
+    "fishcake": ["busan-mall-045"],
+    "한우": ["seoul-mall-002"],
+    "등심": ["seoul-mall-002"],
+    "beef": ["seoul-mall-002"],
+    "농산물": ["seoul-mall-001"],
+    "과일": ["seoul-mall-001"],
+    "수산물": ["busan-mall-045"],
+    "가공식품": ["busan-mall-045"],
+    "축산물": ["seoul-mall-002"],
+    "정육": ["seoul-mall-002"]
+  },
+  "consonant_index": {
+    "ㄱㄱ": ["seoul-mall-001"],
+    "ㅈㅈ": ["seoul-mall-001"],
+    "ㅇㅁ": ["busan-mall-045"],
+    "ㅂㅅ": ["busan-mall-045"],
+    "ㅎㅇ": ["seoul-mall-002"],
+    "ㄷㅅ": ["seoul-mall-002"]
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": 1,
+        "title": "Setup Next.js Project",
+        "description": "Initialize Next.js with TypeScript and Tailwind CSS",
+        "status": "done",
+        "dependencies": [],
+        "priority": "high",
+        "details": "Initialize new Next.js project with TypeScript support. Install and configure Tailwind CSS, shadcn/ui for UI components. Set up folder structure: src/components, src/pages, src/lib. Configure TypeScript strict mode. Install dependencies: react-simple-south-korea-map-chart, fuse.js.",
+        "testStrategy": "Verify Next.js runs on localhost:3000. Check TypeScript compilation. Validate Tailwind CSS is working."
+      },
+      {
+        "id": 2,
+        "title": "Create Data Structures",
+        "description": "Define JSON schemas for products and search index",
+        "status": "done",
+        "dependencies": [
+          1
+        ],
+        "priority": "high",
+        "details": "Create TypeScript interfaces for Product and SearchIndex. Define schema: Product with id, name, price, image_url, mall_name, mall_id, region, categories, link, created_at. Create sample JSON files for testing. Document data structure in README.",
+        "testStrategy": "Validate JSON structure with TypeScript interfaces. Create unit tests for data validation."
+      },
+      {
+        "id": 3,
+        "title": "Build Homepage Layout",
+        "description": "Implement hero section, map, and product grid",
+        "status": "done",
+        "dependencies": [
+          1,
+          2
+        ],
+        "priority": "high",
+        "details": "Create Hero component with tagline and search bar. Integrate react-simple-south-korea-map-chart with click handlers. Build ProductGrid component with responsive card layout. Implement pagination (20-30 items per page).",
+        "testStrategy": "Test responsive behavior on mobile/desktop. Verify map interactions. Check pagination logic."
+      },
+      {
+        "id": 4,
+        "title": "Create Mall Search Page",
+        "description": "Build /malls page with search and filtering",
+        "status": "done",
+        "dependencies": [
+          1,
+          2
+        ],
+        "priority": "medium",
+        "details": "Implement mall search with name/region filtering. Create MallCard component displaying logo, name, description, product count. Add sorting options (name, product count, last updated). Make responsive layout.",
+        "testStrategy": "Test search functionality. Verify filtering accuracy. Check responsive design."
+      },
+      {
+        "id": 5,
+        "title": "Implement Category System",
+        "description": "Create tag-based categorization and filtering",
+        "status": "done",
+        "dependencies": [
+          2,
+          3
+        ],
+        "priority": "high",
+        "details": "Build CategoryTag component as clickable chips. Create /category/[slug] dynamic route. Implement multi-tag filtering with AND/OR toggle. Display tag cloud with product counts.",
+        "testStrategy": "Test tag filtering combinations. Verify URL routing. Validate product counts."
+      },
+      {
+        "id": 6,
+        "title": "Setup Client-Side Search",
+        "description": "Integrate Fuse.js for Korean-optimized search",
+        "status": "done",
+        "dependencies": [
+          2,
+          3
+        ],
+        "priority": "high",
+        "details": "Initialize Fuse.js with product data. Configure search with threshold 0.3. Implement no-space query fallback for Korean. Add search UI with real-time results. Include consonant search support.",
+        "testStrategy": "Test Korean/English search terms. Verify no-space handling. Check search performance."
+      },
+      {
+        "id": 7,
+        "title": "Create Static Pages",
+        "description": "Build About and Contact pages",
+        "status": "done",
+        "dependencies": [
+          1
+        ],
+        "priority": "medium",
+        "details": "Create /about page with statistics, 3-step process. Build /contact with form validation (name, email, subject, message). Add FAQ accordion component. Include regional quick links in footer.",
+        "testStrategy": "Form validation tests. Check responsive layouts. Verify statistics display."
+      },
+      {
+        "id": 8,
+        "title": "Setup Data Pipeline Scripts",
+        "description": "Create scraping and JSON generation workflow",
+        "status": "done",
+        "dependencies": [
+          2
+        ],
+        "priority": "high",
+        "details": "Create npm scripts: scrape:all, generate-json. Build JSON generation for all-products.json and regional files. Implement search index builder. Add Git automation for data updates.",
+        "testStrategy": "Run full pipeline test. Verify JSON integrity. Check Git automation."
+      },
+      {
+        "id": 9,
+        "title": "Implement Regional Filtering",
+        "description": "Connect map to product filtering",
+        "status": "done",
+        "dependencies": [
+          3
+        ],
+        "priority": "medium",
+        "details": "Create region mapping for cities/provinces. Build dynamic import for regional JSON files. Sync map selection with product grid. Add density indicators to map regions.",
+        "testStrategy": "Test all region selections. Verify data loading. Check visual indicators."
+      },
+      {
+        "id": 10,
+        "title": "Deploy to Vercel",
+        "description": "Configure static site deployment",
+        "status": "done",
+        "dependencies": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "priority": "medium",
+        "details": "Configure Next.js static export. Setup Vercel project with GitHub integration. Optimize images via JSDelivr CDN. Configure build settings for zero-cost deployment.",
+        "testStrategy": "Lighthouse audit. Validate static export. Confirm CDN delivery."
+      }
+    ],
+    "metadata": {
+      "projectName": "K-Mall Aggregator",
+      "totalTasks": 10,
+      "sourceFile": "PRD.txt",
+      "generatedAt": "2025-07-08",
+      "created": "2025-07-08T02:14:50.355Z",
+      "description": "Tasks for master context",
+      "updated": "2025-07-09T05:19:36.225Z"
+    }
+  }
+}

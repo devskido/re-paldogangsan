@@ -1,0 +1,265 @@
+Korean Local Government Shopping Mall Aggregator - Complete PRD
+Executive Summary
+This project builds an automated system that aggregates products from 100+ Korean local government shopping malls into a unified platform. Using Claude Code to generate reusable, intelligent scraping modules for each shopping mall, eliminating the need for manual scraper development. The system displays products in a card-based interface with regional filtering via an interactive Korea map. The MVP architecture uses JSON files served via GitHub Pages/CDN for immediate deployment with zero infrastructure cost. Total monthly cost is only $20 (Claude Code subscription).
+1. Project Overview
+1.1 Project Name
+Korean Local Government Mall Aggregator (K-Mall Aggregator)
+1.2 Vision
+Create a centralized platform where users can discover and browse products from all Korean local government shopping malls in one place, with intelligent regional filtering and modern user experience.
+1.3 Core Value Proposition
+For Consumers: One-stop shop for all local government mall products with smart search
+For Local Governments: Increased visibility and reach for local products
+For Local Businesses: Better market access through aggregated platform
+1.4 Technical Approach (MVP)
+Claude Code generates customized scraping modules for each mall
+Each mall requires its own individual scraper due to unique website structures
+Generated scrapers create JSON files
+JSON files served directly via GitHub Pages or CDN
+Static site generation with Next.js
+Search implemented client-side with pre-indexed data
+Total cost: $20/month (Claude Code subscription only)
+2. Functional Requirements
+2.1 User Interface
+2.1.1 Header Navigation
+Logo & Brand: K-Mall Aggregator logo (links to homepage)
+Main Navigation:
+Home
+Mall Search
+About
+Contact
+2.1.2 Homepage Layout
+Hero Section
+Main tagline: "All Korean local government malls in one place"
+Quick search bar
+Popular categories buttons
+Interactive Korea Map
+react-simple-south-korea-map-chart component
+Click regions to filter malls
+Visual indicators for mall count per region
+Product Grid
+Card-based responsive layout
+20-30 products per page
+Page number navigation
+2.1.3 Mall Search Page (/malls)
+Search Features:
+Search by mall name
+Filter by region (dropdown or map)
+Sort by: name, product count, last updated
+Mall Cards Display:
+Mall logo
+Mall name and description
+Region badge
+Product count
+"Visit Mall Products" button
+Grid Layout: 3-4 columns on desktop, responsive
+2.1.4 Service Introduction Page (/about)
+Hero Section: Mission and vision
+Features Section:
+Unified Search
+Regional Filter
+Category Classification
+Regular Updates
+Statistics:
+Total malls connected
+Total products available
+Regions covered
+How It Works: 3-step process visualization
+Benefits: For consumers, local governments, and businesses
+2.1.5 Contact Page (/contact)
+Contact Form:
+Name (required)
+Email (required)
+Subject dropdown:
+General Inquiry
+Mall Registration Request
+Technical Support
+Partnership Inquiry
+Bug Report
+Message textarea (required)
+Submit button
+FAQ Section: Common questions Response Time: "1-2 business days"
+2.1.6 Product Card Design
+Product image
+Product name and price
+Mall logo and name
+Regional badge
+Category Tags:
+Display all tags as clickable chips
+Equal visual weight for all tags
+Click tag to filter by that category
+Click card to visit original product page
+2.1.7 Category System
+Tag-Based Categories:
+Products can have multiple category tags
+All tags have equal weight (no hierarchy)
+Click any tag to see all products with that tag
+Visual display as colored chips
+Category Page (/category/[slug]):
+Shows ALL products tagged with that category
+Related categories shown as tag cloud
+Product count per tag displayed
+Multi-Tag Filtering:
+Select multiple tags for combined filtering
+Toggle between "All tags" (AND) vs "Any tag" (OR) matching
+Clear visual indication of active filters
+2.1.8 Footer
+Company Info: About K-Mall Aggregator
+Quick Links:
+About
+Contact
+Terms
+Privacy
+Regional Links: Quick access to major regions
+2.2 Korean Regional System
+2.2.1 Region Classification
+Metropolitan Cities: Seoul, Busan, Daegu, Incheon, Gwangju, Daejeon, Ulsan, Sejong
+Provinces: Gyeonggi, Gangwon, Chungbuk, Chungnam, Jeonbuk, Jeonnam, Gyeongbuk, Gyeongnam, Jeju
+2.2.2 Map Integration
+Interactive map using react-simple-south-korea-map-chart
+Click regions to filter malls and products
+Visual indicators for mall density per region
+3. Technical Architecture
+3.1 MVP Architecture (JSON-based)
+┌─────────────────┐     ┌──────────────────┐     ┌─────────────────┐
+│  Local Machine  │────▶│ GitHub Repo      │────▶│  Vercel (Free)  │
+│                 │     │                  │     │                 │
+│ - Claude Code   │     │ - JSON files     │     │ - Static Site   │
+│ - Generated     │     │ - Search index   │     │ - Client Search │
+│   Scrapers      │     │ - Mall logos     │     │ - No Backend    │
+└─────────────────┘     └──────────────────┘     └─────────────────┘
+3.2 Technology Stack (MVP)
+3.2.1 Frontend (Vercel)
+Framework: Next.js with TypeScript (Static Generation)
+Rendering: Static Site Generation (SSG)
+Search: Client-side search with Fuse.js or FlexSearch
+Data: JSON files loaded at build time
+Styling: Tailwind CSS
+Map: react-simple-south-korea-map-chart
+3.2.2 Data Storage (MVP)
+Primary Storage: GitHub repository
+/data/products/ - Product JSON files
+/data/search-index.json - Pre-built search index
+/public/logos/ - Mall logos via JSDelivr CDN
+Deployment: GitHub Pages or Vercel (static hosting)
+3.3 MVP Data Structure
+3.3.1 Product JSON Structure
+javascript
+// data/products/all-products.json
+{
+  "metadata": {
+    "last_updated": "2024-12-20T03:00:00Z",
+    "total_products": 52341,
+    "total_malls": 102
+  },
+  "products": [
+    {
+      "id": "we-mall-001",
+      "mall_engname": "we-mall",
+      "mall_name": "We Mall",
+      "mall_region": "Daegu",
+      "name": "Jeju Tangerines 3kg",
+      "price": 15000,
+      "image_url": "https://...",
+      "product_url": "https://...",
+      "categories": ["Agricultural", "Fruits"],
+      "search_text": "jeju tangerines 3kg jejutangerines" // For search
+    }
+  ]
+}
+3.3.2 Search Index Structure
+javascript
+// data/search-index.json
+{
+  "version": "1.0",
+  "created_at": "2024-12-20T03:00:00Z",
+  "index": {
+    "tangerine": ["we-mall-001", "jeju-mall-023", ...],
+    "jeju": ["we-mall-001", "jeju-mall-023", ...],
+    "fruit": ["we-mall-001", "busan-mall-045", ...],
+    // Korean consonant search support
+    "ㄱㄱ": ["we-mall-001", ...] // 감귤 (tangerine)
+  }
+}
+4. MVP Implementation
+4.1 Static Site Generation
+javascript
+// pages/index.tsx (MVP)
+export async function getStaticProps() {
+  // Load JSON files at build time
+  const products = await import('../data/products/all-products.json');
+  const searchIndex = await import('../data/search-index.json');
+  
+  return {
+    props: {
+      products: products.default.products.slice(0, 100), // Sample for homepage
+      totalProducts: products.default.metadata.total_products,
+      searchIndex: searchIndex.default
+    }
+  };
+}
+4.2 Client-Side Search (MVP)
+javascript
+// lib/search.ts
+import Fuse from 'fuse.js';
+
+let fuseInstance: Fuse<Product> | null = null;
+
+export function initializeSearch(products: Product[]) {
+  fuseInstance = new Fuse(products, {
+    keys: ['name', 'categories', 'mall_name'],
+    threshold: 0.3,
+    includeScore: true
+  });
+}
+
+export function searchProducts(query: string): Product[] {
+  if (!fuseInstance) return [];
+  
+  // Basic search
+  let results = fuseInstance.search(query);
+  
+  // No-space search
+  if (results.length === 0) {
+    const noSpaceQuery = query.replace(/\s/g, '');
+    results = fuseInstance.search(noSpaceQuery);
+  }
+  
+  return results.map(r => r.item);
+}
+4.3 Data Update Process (MVP)
+bash
+# 1. Run scraping (local)
+npm run scrape:all
+
+# 2. Generate JSON files
+# - data/products/all-products.json
+# - data/products/by-region/*.json
+# - data/search-index.json
+
+# 3. Commit & push to GitHub
+git add data/
+git commit -m "Update: Product data $(date)"
+git push
+
+# 4. Vercel auto-redeploy (or manual trigger)
+4.4 Regional Filtering (MVP)
+javascript
+// Separate JSON files by region
+data/products/by-region/
+├── seoul.json
+├── busan.json
+├── daegu.json
+└── ...
+
+// Dynamic import to load only needed regions
+async function loadRegionProducts(region: string) {
+  const module = await import(`../data/products/by-region/${region}.json`);
+  return module.default.products;
+}
+
+4.5 Scraper Architecture
+Since each mall has its own unique website structure, layout, and technology stack:
+- Individual scrapers must be created for each of the 100+ malls
+- Claude Code generates customized scrapers based on each mall's specific requirements
+- Each scraper handles the mall's unique selectors, pagination, and data structures
+- Regional templates provide common patterns but each scraper is individually tailored

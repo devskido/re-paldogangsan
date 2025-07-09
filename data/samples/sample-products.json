@@ -1,0 +1,51 @@
+{
+  "metadata": {
+    "last_updated": "2025-01-08T12:00:00Z",
+    "total_products": 3,
+    "total_malls": 2
+  },
+  "products": [
+    {
+      "id": "seoul-mall-001",
+      "name": "제주 감귤 3kg",
+      "price": 15000,
+      "image_url": "https://example.com/images/tangerines.jpg",
+      "mall_name": "서울시 농수산물 쇼핑몰",
+      "mall_id": "seoul-agri",
+      "mall_engname": "seoul-agri-mall",
+      "mall_region": "seoul",
+      "product_url": "https://seoul-agri.kr/product/001",
+      "categories": ["농산물", "과일"],
+      "search_text": "제주 감귤 3kg jeju tangerines jejugamgyul",
+      "created_at": "2025-01-08T10:00:00Z"
+    },
+    {
+      "id": "busan-mall-045",
+      "name": "부산 어묵 세트",
+      "price": 25000,
+      "image_url": "https://example.com/images/fishcake.jpg",
+      "mall_name": "부산광역시 특산품몰",
+      "mall_id": "busan-special",
+      "mall_engname": "busan-special-mall",
+      "mall_region": "busan",
+      "product_url": "https://busan-special.kr/product/045",
+      "categories": ["수산물", "가공식품"],
+      "search_text": "부산 어묵 세트 busan fishcake eomuk",
+      "created_at": "2025-01-08T09:30:00Z"
+    },
+    {
+      "id": "seoul-mall-002",
+      "name": "한우 등심 500g",
+      "price": 45000,
+      "image_url": "https://example.com/images/beef.jpg",
+      "mall_name": "서울시 농수산물 쇼핑몰",
+      "mall_id": "seoul-agri",
+      "mall_engname": "seoul-agri-mall",
+      "mall_region": "seoul",
+      "product_url": "https://seoul-agri.kr/product/002",
+      "categories": ["축산물", "정육"],
+      "search_text": "한우 등심 500g hanwoo beef sirloin",
+      "created_at": "2025-01-08T08:00:00Z"
+    }
+  ]
+}
