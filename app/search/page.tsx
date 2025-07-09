@@ -61,8 +61,8 @@ function SearchContent() {
             onChange={setQuery}
             suggestions={suggestions}
             placeholder="상품명, 지역, 카테고리로 검색하세요..."
-            size="large"
             autoFocus
+            className="text-lg"
           />
         </div>
 
