@@ -4,7 +4,7 @@ import { useState } from 'react';
 import dynamic from 'next/dynamic';
 
 const SouthKoreaMapChart = dynamic(
-  () => import('react-simple-south-korea-map-chart'),
+  () => import('react-simple-south-korea-map-chart').then(mod => mod.default || mod),
   { ssr: false }
 ) as any;
 import { REGION_NAMES } from '@/src/types/mall';

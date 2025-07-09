@@ -9,6 +9,11 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'K-Mall Aggregator - 대한민국 지자체 쇼핑몰 통합 플랫폼',
   description: '전국 100개 이상의 지자체 쇼핑몰 상품을 한 곳에서 만나보세요',
+  icons: {
+    icon: '/icon.svg',
+    shortcut: '/icon.svg',
+    apple: '/icon.svg',
+  },
 }
 
 export default function RootLayout({
